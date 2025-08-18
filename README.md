@@ -1,1 +1,2 @@
-# pb-qe
+# Programa de Bolsas: Compass UOL - AI & AWS for Software Quality Engineering
+Este repositório registra todas as atividades realizadas no decorrer das sprints do programa de bolsas AI & AWS for Software Quality Engineering da Compass UOL. As atividades estão organizadas por Sprint e semanas, contendo todos os artefatos gerados em cada uma delas.
