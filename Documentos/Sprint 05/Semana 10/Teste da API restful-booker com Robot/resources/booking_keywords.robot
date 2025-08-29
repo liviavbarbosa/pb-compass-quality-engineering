@@ -21,13 +21,13 @@ POST Endpoint /booking
     &{header}    Create Dictionary    Content-Type=application/json
     ...           Accept=application/json
 
-    ${response}    POST On Session    restful-booker    /booking    json=&{payload}    
+    ${response}    POST On Session    restful-booker    /booking    json=&{payload}    expected_status=any    
     Set Global Variable    ${ID_RESERVA}    ${response.json()["bookingid"]}
     Set Global Variable    ${response}
     Set Global Variable    &{payload}
 
 PUT Endpoint /booking/id
-    [Arguments]    ${nome_cliente}    ${sobrenome_cliente}    ${preco_reserva}    ${deposito_pago}    ${checkin}    ${checkout}    ${necessidades_adicionais}
+    [Arguments]    ${id_reserva}    ${nome_cliente}    ${sobrenome_cliente}    ${preco_reserva}    ${deposito_pago}    ${checkin}    ${checkout}    ${necessidades_adicionais}    ${token}
     
     &{datas_reserva}    Create Dictionary    checkin=${checkin}    checkout=${checkout}
     
@@ -42,34 +42,36 @@ PUT Endpoint /booking/id
     &{header}    Create Dictionary
     ...           Content-Type=application/json
     ...           Accept=application/json
-    ...           Cookie=token=${TOKEN}
+    ...           Cookie=token=${token}
 
-    ${response}    PUT On Session    restful-booker    /booking/${ID_RESERVA}    json=&{payload}    headers=${header}
+    ${response}    PUT On Session    restful-booker    /booking/${ID_RESERVA}    json=&{payload}    headers=${header}    expected_status=any
     Set Global Variable    ${response}
 
 PATCH Endpoint /booking/id
-    [Arguments]    &{dados_modificar}
+    [Arguments]    ${id_reserva}    ${token}    &{dados_modificar}
     &{header}    Create Dictionary
     ...           Content-Type=application/json
     ...           Accept=application/json
-    ...           Cookie=token=${TOKEN}
+    ...           Cookie=token=${token}
 
-    ${response}    PATCH On Session    restful-booker    /booking/${ID_RESERVA}    json=&{dados_modificar}    headers=${header}
+    ${response}    PATCH On Session    restful-booker    /booking/${id_reserva}    json=&{dados_modificar}    headers=${header}    expected_status=any
     Set Global Variable    ${response}
 
 GET Endpoint /booking
     ${response}    GET On Session    restful-booker    /booking
     Set Global Variable    ${response}
 
-GET Endpoint /booking/id
-    ${response}    GET On Session    restful-booker    /booking/${ID_RESERVA}
-    Set Global Variable    ${response}
+GET Endpoint /booking/id    
+    [Arguments]    ${id_reserva}
+    ${response}    GET On Session    restful-booker    /booking/${ID_RESERVA}    expected_status=any
+    Set Global Variable    ${id_reserva}
 
 DELETE Endpoint /booking/id
+    [Arguments]    ${id_reserva}    ${token}
     &{header}    Create Dictionary
     ...           Content-Type=application/json
     ...           Accept=application/json
-    ...           Cookie=token=${TOKEN}
+    ...           Cookie=token=${token}
 
-    ${response}    DELETE On Session    restful-booker    /booking/${ID_RESERVA}    headers=${header}
+    ${response}    DELETE On Session    restful-booker    /booking/${id_reserva}    headers=${header}    expected_status=any
     Set Global Variable    ${response}

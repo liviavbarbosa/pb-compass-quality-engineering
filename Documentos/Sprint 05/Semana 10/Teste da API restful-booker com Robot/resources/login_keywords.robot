@@ -5,10 +5,13 @@ Resource         base_keywords.robot
 
 *** Keywords ***
 POST Endpoint /auth
-    [Arguments]    ${USERNAME}    ${PASSWORD}
+    [Arguments]    ${username}    ${password}
     &{payload}    Create Dictionary    
-    ...           username=${USERNAME}
-    ...           password=${PASSWORD}
-    ${response}    POST On Session    restful-booker    /auth    json=&{payload}
-    Set Global Variable    ${TOKEN}    ${response.json()["token"]}
+    ...           username=${username}
+    ...           password=${password}
+    ${response}    POST On Session    restful-booker    /auth    json=&{payload}    expected_status=any
+    ${token}=    Evaluate    $response.json().get("token")
+    IF    "${token}" != "None"
+        Set Global Variable    ${TOKEN}    ${token}
+    END
     Set Global Variable    ${response}
