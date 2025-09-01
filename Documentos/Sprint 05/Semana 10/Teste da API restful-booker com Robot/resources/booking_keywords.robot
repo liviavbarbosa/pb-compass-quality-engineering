@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation    Keywords necessárias para executar os cenários de teste do Endpoint /booking
 Library          RequestsLibrary
-Resource         base_keywords.robot
+Resource         common.robot
 Resource         login_keywords.robot
 
 *** Keywords ***
@@ -44,7 +44,7 @@ PUT Endpoint /booking/id
     ...           Accept=application/json
     ...           Cookie=token=${token}
 
-    ${response}    PUT On Session    restful-booker    /booking/${ID_RESERVA}    json=&{payload}    headers=${header}    expected_status=any
+    ${response}    PUT On Session    restful-booker    /booking/${id_reserva}    json=&{payload}    headers=${header}    expected_status=any
     Set Global Variable    ${response}
 
 PATCH Endpoint /booking/id
@@ -63,7 +63,7 @@ GET Endpoint /booking
 
 GET Endpoint /booking/id    
     [Arguments]    ${id_reserva}
-    ${response}    GET On Session    restful-booker    /booking/${ID_RESERVA}    expected_status=any
+    ${response}    GET On Session    restful-booker    /booking/${id_reserva}    expected_status=any
     Set Global Variable    ${id_reserva}
 
 DELETE Endpoint /booking/id

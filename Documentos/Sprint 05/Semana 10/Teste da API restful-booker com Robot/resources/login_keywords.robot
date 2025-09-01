@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation    Keywords necessárias para executar os cenários de teste do Endpoint /auth
 Library          RequestsLibrary
-Resource         base_keywords.robot
+Resource         common.robot
 
 *** Keywords ***
 POST Endpoint /auth
