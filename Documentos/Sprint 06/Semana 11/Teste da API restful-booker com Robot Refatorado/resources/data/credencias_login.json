@@ -1,0 +1,22 @@
+{
+    "usuario_valido": {
+        "username" : "admin",
+        "password" : "password123"
+    },
+    "usuario_com_username_vazio": {
+        "username" : "",
+        "password" : "password123"
+    },
+    "usuario_com_senha_vazia": {
+        "username" : "admin",
+        "password" : ""
+    },
+    "usuario_com_username_invalido": {
+        "username" : "liviateste",
+        "password" : "password123"
+    },
+    "usuario_com_senha_incorreta": {
+        "username" : "admin",
+        "password" : "teste123"
+    }
+}
