@@ -1,8 +1,8 @@
 *** Settings ***
 Documentation    Keywords necessárias para executar os cenários de teste do Endpoint /booking
 Library          RequestsLibrary
-Resource         common.robot
-Resource         data/dynamics.robot
+Resource         ../support/common/common.robot
+Resource         ../support/fixtures/dynamics.robot
 Resource         login_keywords.robot
 
 *** Keywords ***
@@ -10,10 +10,9 @@ POST Endpoint /booking
     &{header}    Create Dictionary    Content-Type=application/json
     ...           Accept=application/json
 
-    ${response}    POST On Session    restful-booker    /booking    json=&{payload}    expected_status=any    
+    ${response}    POST On Session    restful-booker    /booking    json=${payload}    expected_status=any    
     Set Global Variable    ${ID_RESERVA}    ${response.json()["bookingid"]}
     Set Global Variable    ${response}
-    Log To Console    ${response.json()}
 
 PUT Endpoint /booking/id
     [Arguments]    ${id_reserva}    ${token}
@@ -22,7 +21,7 @@ PUT Endpoint /booking/id
     ...           Accept=application/json
     ...           Cookie=token=${token}
 
-    ${response}    PUT On Session    restful-booker    /booking/${id_reserva}    json=&{payload}    headers=${header}    expected_status=any
+    ${response}    PUT On Session    restful-booker    /booking/${id_reserva}    json=${payload}   headers=${header}    expected_status=any
     Set Global Variable    ${response}
     Log To Console    ${response.json()}
 
@@ -54,47 +53,42 @@ DELETE Endpoint /booking/id
     ${response}    DELETE On Session    restful-booker    /booking/${id_reserva}    headers=${header}    expected_status=any
     Set Global Variable    ${response}
 
-Cadastrar Reserva Valida
+Pegar Dados Reserva Dinamica Valida
     ${payload}    Criar Dados Reserva Valida
     Set Global Variable    ${payload}
-    POST Endpoint /booking
 
-Cadastrar Reserva com Campos Nulos
+Pegar Dados Reserva Estatica com Campos Nulos
     ${json}    Importar JSON    reservas_invalidas.json
-    ${payload}    Set Variable    ${json["reserva_com_campos_faltando"]}
-    POST Endpoint /booking
+    Set Global Variable    ${payload}    ${json["reserva_com_campos_faltando"]}
 
-Cadastrar Reserva com Tipagem Incorreta
+Pegar Dados Reserva Estatica com Tipagem Incorreta 
     ${json}    Importar JSON    reservas_invalidas.json
-    ${payload}    Set Variable    ${json["reserva_com_tipagem_incorreta"]}
-    POST Endpoint /booking
+    Set Global Variable    ${payload}    ${json["reserva_com_tipagem_incorreta"]}
 
-Cadastrar Reserva com Valor Numerico Invalido
+Pegar Dados Reserva Estatica com Valor Numerico Invalido 
     ${json}    Importar JSON    reservas_invalidas.json
-    ${payload}    Set Variable    ${json["reserva_com_valor_numerico_invalido"]}
-    POST Endpoint /booking
+    Set Global Variable    ${payload}    ${json["reserva_com_valor_numerico_invalido"]}
 
-Editar Reserva Valida
-    ${payload}    Criar Dados Reserva Valida
-    Set Global Variable    ${payload}
-    PUT Endpoint /booking/id    ${ID_RESERVA}    ${TOKEN}   
-
-Editar Reserva com Campos Nulos
+Pegar Dados Reserva Estatica com Datas Invalidas
     ${json}    Importar JSON    reservas_invalidas.json
-    ${payload}    Set Variable    ${json["reserva_com_campos_faltando"]}
-    PUT Endpoint /booking/id    ${ID_RESERVA}    ${TOKEN}
+    Set Global Variable    ${payload}    ${json["reserva_com_datas_invalidas"]}
 
-Editar Reserva com Tipagem Incorreta
+Pegar Dados Reserva Estatica com Formato Data Invalido
     ${json}    Importar JSON    reservas_invalidas.json
-    ${payload}    Set Variable    ${json["reserva_com_tipagem_incorreta"]}
-    PUT Endpoint /booking/id    ${ID_RESERVA}    ${TOKEN}
+    Set Global Variable    ${payload}    ${json["reserva_com_formato_data_invalido"]}
 
-Editar Reserva com Valor Numerico Invalido
+Pegar Dados Reserva Estatica sem Bookingdates
     ${json}    Importar JSON    reservas_invalidas.json
-    ${payload}    Set Variable    ${json["reserva_com_valor_numerico_invalido"]}
-    PUT Endpoint /booking/id    ${ID_RESERVA}    ${TOKEN}
+    Set Global Variable    ${payload}    ${json["reserva_sem_bookingdates"]}
 
-Editar Reserva sem Autenticação
-    ${payload}    Criar Dados Reserva Valida
-    Set Global Variable    ${payload}
-    PUT Endpoint /booking/id    ${ID_RESERVA}    ${EMPTY}
+Pegar Dados Reserva Estatica com Campos Extras
+    ${json}    Importar JSON    reservas_invalidas.json
+    Set Global Variable    ${payload}    ${json["reserva_com_campos_extras"]}
+
+Pegar Dados Reserva Estatica com Strings Muito Longas
+    ${json}    Importar JSON    reservas_invalidas.json
+    Set Global Variable    ${payload}    ${json["reserva_com_strings_muito_longas"]}
+
+Pegar Dados Reserva Estatica com Preco Zero
+    ${json}    Importar JSON    reservas_invalidas.json
+    Set Global Variable    ${payload}    ${json["reserva_com_preco_zero"]}

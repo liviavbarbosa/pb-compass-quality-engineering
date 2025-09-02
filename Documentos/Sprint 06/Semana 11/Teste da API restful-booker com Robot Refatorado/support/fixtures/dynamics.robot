@@ -8,16 +8,16 @@ Criar Dados Reserva Valida
     ${lastname}           FakerLibrary.Last Name
     ${totalprice}         FakerLibrary.Random Int
     ${depositpaid}        FakerLibrary.Boolean
-    ${checkin}            FakerLibrary.Date 
-    ${checkout}           FakerLibrary.Date
+    ${checkin}            FakerLibrary.Date    pattern=%Y-%m-%d
+    ${checkout}           FakerLibrary.Date    pattern=%Y-%m-%d
     ${additionalneeds}    FakerLibrary.Word
 
     &{bookingdates}    Create Dictionary    checkin=${checkin}    checkout=${checkout}
-    &{payload}         Create Dictionary    
+    ${payload}         Create Dictionary    
     ...                firstname=${firstname}
     ...                lastname=${lastname}
     ...                totalprice=${totalprice}
     ...                depositpaid=${depositpaid}
     ...                bookingdates=${bookingdates}
     ...                additionalneeds=${additionalneeds}
-    RETURN    &{payload}
+    Set Global Variable    ${payload}    

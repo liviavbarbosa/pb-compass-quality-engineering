@@ -1,12 +1,10 @@
 *** Settings ***
 Documentation    Keywords necessárias para executar os cenários de teste
 Library          RequestsLibrary
-Library    OperatingSystem
-Resource         login_keywords.robot
-
-*** Keywords ***
-*** Variables ***
-${URL_BASE}    https://restful-booker.herokuapp.com
+Library          OperatingSystem
+Library          JSONLibrary
+Resource         ../variables/restful-booker_variables.robot
+Resource         ../../keywords/login_keywords.robot
 
 *** Keywords ***
 Criar Sessao
@@ -21,6 +19,5 @@ Validar se a Resposta Contem "${palavra}"
 
 Importar JSON 
     [Arguments]    ${nome_arquivo}
-    ${arquivo}     Get File    ${EXECDIR}/Sprint 06/Semana 11/Teste da API restful-booker com Robot Refatorado/resources/data/${nome_arquivo}
-    ${data}        Evaluate    json.loads('''${arquivo}''')    json
+    ${data}        Load Json From File    ${EXECDIR}/Documentos/Sprint 06/Semana 11/Teste da API restful-booker com Robot Refatorado/support/fixtures/static/${nome_arquivo}
     RETURN       ${data}

@@ -1,0 +1,99 @@
+{
+    "reserva_com_campos_faltando": {
+        "firstname" : "",
+        "lastname" : "",
+        "totalprice" : 620,
+        "depositpaid" : "",
+        "bookingdates" : {
+            "checkin" : "2020-01-01",
+            "checkout" : "2022-03-24"
+        },
+        "additionalneeds" : "Café"
+    },
+    "reserva_com_tipagem_incorreta": {
+        "firstname" : 12345,
+        "lastname" : "Jhonsons",
+        "totalprice" : true,
+        "depositpaid" : "65626",
+        "bookingdates" : {
+            "checkin" : "2015-12-26",
+            "checkout" : "2025-09-30"
+        },
+        "additionalneeds" : "Lanche"
+    },
+    "reserva_com_valor_numerico_invalido": {
+        "firstname" : "Ana",
+        "lastname" : "Fernandes",
+        "totalprice" : -450,
+        "depositpaid" : false,
+        "bookingdates" : {
+            "checkin" : "2017-10-12",
+            "checkout" : "2017-10-17"
+        },
+        "additionalneeds" : "Chá"
+    },
+    "reserva_com_datas_invalidas": {
+        "firstname" : "Carlos",
+        "lastname" : "Silva",
+        "totalprice" : 300,
+        "depositpaid" : true,
+        "bookingdates" : {
+            "checkin" : "2025-12-31",
+            "checkout" : "2025-01-01"
+        },
+        "additionalneeds" : "Breakfast"
+    },
+    "reserva_com_formato_data_invalido": {
+        "firstname" : "Maria",
+        "lastname" : "Santos",
+        "totalprice" : 250,
+        "depositpaid" : false,
+        "bookingdates" : {
+            "checkin" : "31/12/2024",
+            "checkout" : "01/01/2025"
+        },
+        "additionalneeds" : "Dinner"
+    },
+    "reserva_sem_bookingdates": {
+        "firstname" : "Pedro",
+        "lastname" : "Costa",
+        "totalprice" : 180,
+        "depositpaid" : true,
+        "additionalneeds" : "Lunch"
+    },
+    "reserva_com_campos_extras": {
+        "firstname" : "Julia",
+        "lastname" : "Oliveira",
+        "totalprice" : 400,
+        "depositpaid" : true,
+        "bookingdates" : {
+            "checkin" : "2024-06-15",
+            "checkout" : "2024-06-20"
+        },
+        "additionalneeds" : "Spa",
+        "email" : "julia@test.com",
+        "phone" : "123456789"
+    },
+    "reserva_com_strings_muito_longas": {
+        "firstname" : "NomeExtremamanteGrandeQueUltrapassaOLimiteNormalDeCaracteresParaUmNomePessoal",
+        "lastname" : "SobrenomeExtremamanteGrandeQueUltrapassaOLimiteNormalDeCaracteresParaUmSobrenome",
+        "totalprice" : 500,
+        "depositpaid" : true,
+        "bookingdates" : {
+            "checkin" : "2024-08-01",
+            "checkout" : "2024-08-05"
+        },
+        "additionalneeds" : "NecessidadeAdicionalExtremamanteGrandeQueUltrapassaOLimiteNormalDeCaracteres"
+    },
+    "reserva_com_preco_zero": {
+        "firstname" : "Zero",
+        "lastname" : "Price",
+        "totalprice" : 0,
+        "depositpaid" : false,
+        "bookingdates" : {
+            "checkin" : "2024-09-01",
+            "checkout" : "2024-09-03"
+        },
+        "additionalneeds" : "Free stay"
+    }
+}
