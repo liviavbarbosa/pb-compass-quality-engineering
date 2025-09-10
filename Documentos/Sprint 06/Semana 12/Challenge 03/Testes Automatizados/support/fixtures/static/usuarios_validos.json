@@ -1,0 +1,10 @@
+{
+    "usuario_comum": {
+        "email": "usuarioteste@teste.com",
+        "password": "teste"
+    },
+    "usuario_adm": {
+        "email": "usuarioadm@teste.com",
+        "password": "teste"
+    }
+}

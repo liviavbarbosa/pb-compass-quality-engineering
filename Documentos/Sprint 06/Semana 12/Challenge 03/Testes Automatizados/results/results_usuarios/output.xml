@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.13.3 on win32)" generated="2025-09-10T17:12:29.657003" rpa="false" schemaversion="5">
+<suite id="s1" name="Usuarios Tests" source="C:\Users\Lívia\pb-compass-quality-engineering\Documentos\Sprint 06\Semana 12\Challenge 03\Testes Automatizados\tests\usuarios_tests.robot">
+<kw name="Criar Sessao" owner="common" type="SETUP">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-09-10T17:12:30.276141" level="INFO">Creating Session using : alias=serverest, url=https://compassuol.serverest.dev/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>serverest</arg>
+<arg>${URL_BASE}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-09-10T17:12:30.275865" elapsed="0.000470"/>
+</kw>
+<status status="PASS" start="2025-09-10T17:12:30.274649" elapsed="0.001766"/>
+</kw>
+<test id="s1-t1" name="CT005: Cadastro de usuário com dados válidos" line="9">
+<kw name="Criar Dados Usuario Valido" owner="dynamics">
+<kw name="First Name" owner="FakerLibrary">
+<msg time="2025-09-10T17:12:30.277488" level="INFO">${nome} = Chelsea</msg>
+<var>${nome}</var>
+<status status="PASS" start="2025-09-10T17:12:30.277246" elapsed="0.000274"/>
+</kw>
+<kw name="Email" owner="FakerLibrary">
+<msg time="2025-09-10T17:12:30.277984" level="INFO">${email} = loriadams@example.org</msg>
+<var>${email}</var>
+<status status="PASS" start="2025-09-10T17:12:30.277617" elapsed="0.000404"/>
+</kw>
+<kw name="Password" owner="FakerLibrary">
+<msg time="2025-09-10T17:12:30.278286" level="INFO">${password} = _PPbK^!56f</msg>
+<var>${password}</var>
+<doc>Generate a random password of the specified ``length``.</doc>
+<status status="PASS" start="2025-09-10T17:12:30.278128" elapsed="0.000183"/>
+</kw>
+<kw name="Boolean" owner="FakerLibrary">
+<msg time="2025-09-10T17:12:30.278509" level="INFO">${administrador} = True</msg>
+<var>${administrador}</var>
+<doc>Generate a random boolean value based on ``chance_of_getting_true``.</doc>
+<status status="PASS" start="2025-09-10T17:12:30.278386" elapsed="0.000140"/>
+</kw>
+<kw name="Convert To String" owner="BuiltIn">
+<msg time="2025-09-10T17:12:30.278717" level="INFO">${administrador} = True</msg>
+<var>${administrador}</var>
+<arg>${administrador}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="PASS" start="2025-09-10T17:12:30.278611" elapsed="0.000119"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-10T17:12:30.279307" level="INFO">${payload} = {'nome': 'Chelsea', 'email': 'loriadams@example.org', 'password': '_PPbK^!56f', 'administrador': 'true'}</msg>
+<var>${payload}</var>
+<arg>nome=${nome}</arg>
+<arg>email=${email}</arg>
+<arg>password=${password}</arg>
+<arg>administrador=${administrador.lower()}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-10T17:12:30.278809" elapsed="0.000519"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2025-09-10T17:12:30.279557" level="INFO">${payload} = {'nome': 'Chelsea', 'email': 'loriadams@example.org', 'password': '_PPbK^!56f', 'administrador': 'true'}</msg>
+<arg>${payload}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2025-09-10T17:12:30.279436" elapsed="0.000145"/>
+</kw>
+<status status="PASS" start="2025-09-10T17:12:30.276997" elapsed="0.002624"/>
+</kw>
+<kw name="POST Endpoint /usuarios" owner="usuarios_keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-10T17:12:30.280657" level="INFO">&amp;{header} = { Content-Type=application/json }</msg>
+<var>&amp;{header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-10T17:12:30.280311" elapsed="0.000390"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-10T17:12:30.789945" level="INFO">POST Request : url=https://compassuol.serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '104', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Chelsea", "email": "loriadams@example.org", "password": "_PPbK^!56f", "administrador": "true"}' 
+ </msg>
+<msg time="2025-09-10T17:12:30.790116" level="INFO">POST Response : url=https://compassuol.serverest.dev/usuarios 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '4dea81359951ceea16cb0c2fdfd077cd;o=1', 'date': 'Wed, 10 Sep 2025 20:12:30 GMT', 'server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "dUlfObpso1uK18Nk"
+} 
+ </msg>
+<msg time="2025-09-10T17:12:30.790171" level="INFO">C:\Users\Lívia\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-09-10T17:12:30.790773" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${payload}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-10T17:12:30.280883" elapsed="0.509974"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2025-09-10T17:12:30.791399" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<arg>${response}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2025-09-10T17:12:30.791203" elapsed="0.000225"/>
+</kw>
+<status status="PASS" start="2025-09-10T17:12:30.280090" elapsed="0.511380"/>
+</kw>
+<kw name="Validar Status Code" owner="common">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code}==${status_code}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2025-09-10T17:12:30.791875" elapsed="0.000481"/>
+</kw>
+<arg>status_code=201</arg>
+<status status="PASS" start="2025-09-10T17:12:30.791665" elapsed="0.000731"/>
+</kw>
+<kw name="Validar se a Resposta Contem &quot;_id&quot;" owner="common" source_name="Validar se a Resposta Contem &quot;${palavra}&quot;">
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response.json()}</arg>
+<arg>${palavra}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-09-10T17:12:30.792770" elapsed="0.000281"/>
+</kw>
+<status status="PASS" start="2025-09-10T17:12:30.792598" elapsed="0.000490"/>
+</kw>
+<kw name="Validar se a Resposta Contem a Mensagem &quot;Cadastro realizado com sucesso&quot;" owner="common" source_name="Validar se a Resposta Contem a Mensagem &quot;${mensagem}&quot;">
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response.json()["message"]}</arg>
+<arg>${mensagem}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-09-10T17:12:30.793411" elapsed="0.000238"/>
+</kw>
+<status status="PASS" start="2025-09-10T17:12:30.793261" elapsed="0.000422"/>
+</kw>
+<status status="PASS" start="2025-09-10T17:12:30.276472" elapsed="0.517366"/>
+</test>
+<test id="s1-t2" name="CT007: Cadastro de usuário com e-mail já utilizado por outro usuário" line="16">
+<kw name="Pegar Dados Usuario com Email ja Utilizado Estatico" owner="usuarios_keywords">
+<kw name="Importar JSON" owner="common">
+<kw name="Load Json From File" owner="JSONLibrary">
+<msg time="2025-09-10T17:12:30.795193" level="INFO">${data} = {'usuario_com_email_ja_utilizado': {'nome': 'Usuario invalido', 'email': 'beltrano@qa.com.br', 'password': 'teste123', 'administrador': 'false'}}</msg>
+<var>${data}</var>
+<arg>${EXECDIR}/Documentos/Sprint 06/Semana 12/Challenge 03/Testes Automatizados/support/fixtures/static/${nome_arquivo}</arg>
+<doc>Load JSON from file.</doc>
+<status status="PASS" start="2025-09-10T17:12:30.794763" elapsed="0.000452"/>
+</kw>
+<return>
+<value>${data}</value>
+<status status="PASS" start="2025-09-10T17:12:30.795253" elapsed="0.000037"/>
+</return>
+<msg time="2025-09-10T17:12:30.795372" level="INFO">${json} = {'usuario_com_email_ja_utilizado': {'nome': 'Usuario invalido', 'email': 'beltrano@qa.com.br', 'password': 'teste123', 'administrador': 'false'}}</msg>
+<var>${json}</var>
+<arg>usuarios_invalidos.json</arg>
+<status status="PASS" start="2025-09-10T17:12:30.794613" elapsed="0.000773"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2025-09-10T17:12:30.795734" level="INFO">${payload} = {'nome': 'Usuario invalido', 'email': 'beltrano@qa.com.br', 'password': 'teste123', 'administrador': 'false'}</msg>
+<arg>${payload}</arg>
+<arg>${json["usuario_com_email_ja_utilizado"]}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2025-09-10T17:12:30.795466" elapsed="0.000309"/>
+</kw>
+<status status="PASS" start="2025-09-10T17:12:30.794311" elapsed="0.001502"/>
+</kw>
+<kw name="POST Endpoint /usuarios" owner="usuarios_keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-10T17:12:30.796278" level="INFO">&amp;{header} = { Content-Type=application/json }</msg>
+<var>&amp;{header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-10T17:12:30.796153" elapsed="0.000147"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-10T17:12:30.993834" level="INFO">POST Request : url=https://compassuol.serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '109', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Usuario invalido", "email": "beltrano@qa.com.br", "password": "teste123", "administrador": "false"}' 
+ </msg>
+<msg time="2025-09-10T17:12:30.993907" level="INFO">POST Response : url=https://compassuol.serverest.dev/usuarios 
+ status=400, reason=Bad Request 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '255c207a2030642f16cb0c2fdfd07b5c', 'date': 'Wed, 10 Sep 2025 20:12:30 GMT', 'server': 'Google Frontend', 'Content-Length': '53'} 
+ body={
+    "message": "Este email já está sendo usado"
+} 
+ </msg>
+<msg time="2025-09-10T17:12:30.993960" level="INFO">C:\Users\Lívia\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-09-10T17:12:30.994353" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${payload}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-09-10T17:12:30.796390" elapsed="0.198018"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2025-09-10T17:12:30.994787" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<arg>${response}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2025-09-10T17:12:30.994624" elapsed="0.000192"/>
+</kw>
+<status status="PASS" start="2025-09-10T17:12:30.796012" elapsed="0.198844"/>
+</kw>
+<kw name="Validar Status Code" owner="common">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.status_code}==${status_code}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2025-09-10T17:12:30.995310" elapsed="0.000511"/>
+</kw>
+<arg>status_code=400</arg>
+<status status="PASS" start="2025-09-10T17:12:30.995108" elapsed="0.000795"/>
+</kw>
+<kw name="Validar se a Resposta nao Contem &quot;_id&quot;" owner="common" source_name="Validar se a Resposta nao Contem &quot;${palavra}&quot;">
+<kw name="Should Not Contain" owner="BuiltIn">
+<arg>${response.json()}</arg>
+<arg>${palavra}</arg>
+<doc>Fails if ``container`` contains ``item`` one or more times.</doc>
+<status status="PASS" start="2025-09-10T17:12:30.996810" elapsed="0.000682"/>
+</kw>
+<status status="PASS" start="2025-09-10T17:12:30.996336" elapsed="0.001262"/>
+</kw>
+<kw name="Validar se a Resposta Contem a Mensagem &quot;Este email já está sendo usado&quot;" owner="common" source_name="Validar se a Resposta Contem a Mensagem &quot;${mensagem}&quot;">
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response.json()["message"]}</arg>
+<arg>${mensagem}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-09-10T17:12:30.998537" elapsed="0.000420"/>
+</kw>
+<status status="PASS" start="2025-09-10T17:12:30.998150" elapsed="0.000885"/>
+</kw>
+<status status="PASS" start="2025-09-10T17:12:30.794055" elapsed="0.205154"/>
+</test>
+<doc>Execução dos casos de teste do endpoint /usuarios</doc>
+<status status="PASS" start="2025-09-10T17:12:29.659021" elapsed="1.340847"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Usuarios Tests" id="s1" pass="2" fail="0" skip="0">Usuarios Tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

@@ -1,0 +1,8 @@
+{
+    "usuario_com_email_ja_utilizado": {
+        "nome": "Usuario invalido",
+        "email": "beltrano@qa.com.br",
+        "password": "teste123",
+        "administrador": "false"
+    }
+}
