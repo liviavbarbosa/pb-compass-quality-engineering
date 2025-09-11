@@ -46,7 +46,3 @@ DELETE Endpoint /usuarios/id
 Pegar Dados Usuario com Email ja Utilizado Estatico
     ${json}    Importar JSON    usuarios_invalidos.json
     Set Global Variable    ${payload}    ${json["usuario_com_email_ja_utilizado"]}
-
-Criar Dados Usuario
-    ${json}    Importar JSON    usuarios.json
-    Set Global Variable    ${payload}    ${json["usuario_com_email_ja_utilizado"]}
