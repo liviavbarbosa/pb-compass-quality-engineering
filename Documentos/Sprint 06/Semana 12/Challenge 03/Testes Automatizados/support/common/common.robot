@@ -13,7 +13,7 @@ Criar Sessao
 
 Importar JSON 
     [Arguments]    ${nome_arquivo}
-    ${data}        Load Json From File    ${EXECDIR}/Documentos/Sprint 06/Semana 12/Challenge 03/Testes Automatizados/support/fixtures/static/${nome_arquivo}
+    ${data}        Load Json From File    /home/ec2-user/Testes Automatizados/support/fixtures/static/${nome_arquivo}
     RETURN       ${data}
 
 Validar Status Code 

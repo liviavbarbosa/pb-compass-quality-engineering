@@ -2,4 +2,4 @@
 Documentation    Variáveis necessárias para executar os cenários de teste
 
 *** Variables ***
-${URL_BASE}    https://compassuol.serverest.dev/
+${URL_BASE}    http://18.206.186.67:3000
