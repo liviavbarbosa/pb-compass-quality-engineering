@@ -6,9 +6,9 @@ Resource         ../support/common/common.robot
 *** Keywords ***
 POST Endpoint /login      
     ${response}    POST On Session    serverest    /login    json=${payload}    expected_status=any
-    ${token}=    Evaluate    $response.json().get("token")
-    IF    "${token}" != "None"
-        Set Global Variable    ${TOKEN}    ${token}
+    ${authorization}=    Evaluate    $response.json().get("authorization")
+    IF    "${authorization}" != "None"
+        Set Global Variable    ${TOKEN}    ${authorization}
     END
     Set Global Variable    ${response}
 

@@ -3,7 +3,7 @@ Documentation    Keywords necessárias para executar os cenários de teste
 Library          RequestsLibrary
 Library          OperatingSystem
 Library          JSONLibrary
-Library    Collections
+Library          Collections
 Resource         ../../keywords/login_keywords.robot
 Resource         ../../support/variables/serverest_variables.robot
 
