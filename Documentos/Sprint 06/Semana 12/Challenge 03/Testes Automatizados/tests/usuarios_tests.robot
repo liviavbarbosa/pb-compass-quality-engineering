@@ -2,7 +2,6 @@
 Documentation    Execução dos casos de teste do endpoint /usuarios
 Resource         ../keywords/usuarios_keywords.robot
 Resource         ../support/fixtures/dynamics.robot
-Resource         ../keywords/login_keywords.robot
 
 Suite Setup    Criar Sessao
 
