@@ -1,7 +1,6 @@
 *** Settings ***
 Documentation    Cenários de autenticação do usuário
 Resource         ../resources/base.resource
-Library          Collections
 
 Test Setup       Start Session
 Test Teardown    Take Screenshot
@@ -9,8 +8,8 @@ Test Teardown    Take Screenshot
 *** Test Cases ***
 Deve permitir o login com um usuário pré-cadastrado
     ${user}        Create Dictionary    
-    ...            name=Lívia
-    ...            email=liviateste@gmail.com
+    ...            name=Ana Carvalho
+    ...            email=anacarvalho@gmail.com
     ...            password=teste123
     
     Remove user from database    ${user}[email]
@@ -22,8 +21,8 @@ Deve permitir o login com um usuário pré-cadastrado
 
 Não deve permitir o login com senha inválida
     ${user}        Create Dictionary    
-    ...            name=Lívia
-    ...            email=liviateste@gmail.com
+    ...            name=Ana Carvalho
+    ...            email=anacarvalho@gmail.com
     ...            password=teste123
     
     Remove user from database    ${user}[email]

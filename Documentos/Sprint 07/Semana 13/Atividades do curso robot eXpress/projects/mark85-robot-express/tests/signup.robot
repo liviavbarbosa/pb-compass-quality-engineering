@@ -1,8 +1,5 @@
 *** Settings ***
 Documentation    Cenário de testes do cadastro de usuários
-
-Library          FakerLibrary
-Library          Collections
 Resource         ../resources/base.resource
 
 Test Setup       Start Session
@@ -15,7 +12,7 @@ Deve permitir o cadastro um novo usuário válido
 
     ${user}    Create Dictionary    
     ...        name=${name}
-    ...        email=liviateste@gmail.com
+    ...        email=anacarvalho@gmail.com
     ...        password=${password}
 
     Remove user from database    ${user}[email]
@@ -38,7 +35,7 @@ Não deve permitir o cadastro com email duplicado
 
     ${user}    Create Dictionary    
     ...        name=${name}
-    ...        email=liviateste@gmail.com
+    ...        email=anacarvalho@gmail.com
     ...        password=${password}
 
     Remove user from database    ${user}[email]
@@ -68,7 +65,7 @@ Deve permitir o cadastro com e-mail com formatação inválida
 
     ${user}    Create Dictionary    
     ...        name=${name}
-    ...        email=liviateste.com.br
+    ...        email=anacarvalho.com.br
     ...        password=${password}
 
     Go to signup Page

@@ -1,13 +1,57 @@
 {
     "create": {
         "user": {
-            "name": "Lívia",
-            "email": "liviateste@gmail.com",
+            "name": "Ana Carvalho",
+            "email": "anacarvalho@gmail.com",
             "password": "teste123"
         },
         "task": {
             "name": "Criar uma nova versão do Ipod",
-            "tasks": ["ios", "music", "ipod"]
+            "tags": ["ios", "music", "ipod"]
+        }
+    },
+    "duplicate": {
+        "user": {
+            "name": "Amanda Waller",
+            "email": "waller@hotmail.com",
+            "password": "teste123"
+        },
+        "task": {
+            "name": "Recrutar novos meta humanos",
+            "tags": []
+        }
+    },
+    "tags_limit": {
+        "user": {
+            "name": "Carlos Villagran",
+            "email": "kiko@sbt.com",
+            "password": "123teste"
+        },
+        "task": {
+            "name": "Estudar Python",
+            "tags": ["qax", "python", "programação", "pip"]
+        }
+    },
+    "done": {
+        "user": {
+            "name": "Gertrudes da Silva",
+            "email": "ger@icloud.com",
+            "password": "1234567"
+        },
+        "task": {
+            "name": "Lista de compras para fazer bolo",
+            "tags": ["ovos", "farinha", "limões"]
+        }
+    },
+    "delete": {
+        "user": {
+            "name": "Conrad Fisher",
+            "email": "fisher@icloud.com",
+            "password": "belle123"
+        },
+        "task": {
+            "name": "Gravar novo filme",
+            "tags": ["luz", "camera", "ação"]
         }
     }
 }

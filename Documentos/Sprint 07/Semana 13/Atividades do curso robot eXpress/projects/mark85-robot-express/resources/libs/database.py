@@ -11,7 +11,6 @@ def remove_user(email):
     users.delete_many({'email': email})
     print('removing user by ' + email)
 
-
 @keyword('Insert user from database')
 def insert_user(user):
     hash_pass = bcrypt.hashpw(user["password"].encode('utf-8'), bcrypt.gensalt(8))
@@ -23,3 +22,12 @@ def insert_user(user):
     users = db['users']
     users.insert_one(doc)
     print(doc)
+
+@keyword('Clean user from database')
+def clean_user(user_email):
+    users = db["users"]
+    tasks = db["tasks"]
+    u = users.find_one({"email": user_email})
+    if(u):
+        tasks.delete_many({"user": u["_id"]})
+        users.delete_many({"email": user_email})
