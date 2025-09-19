@@ -1,0 +1,13 @@
+{
+    "create": {
+        "user": {
+            "name": "Lívia",
+            "email": "liviateste@gmail.com",
+            "password": "teste123"
+        },
+        "task": {
+            "name": "Criar uma nova versão do Ipod",
+            "tasks": ["ios", "music", "ipod"]
+        }
+    }
+}

@@ -1,53 +1,76 @@
 *** Settings ***
 Documentation    Cenário de testes do cadastro de usuários
+
 Library          FakerLibrary
-Resource         ../resources/base.robot
+Library          Collections
+Resource         ../resources/base.resource
+
+Test Setup       Start Session
+Test Teardown    Take Screenshot
 
 *** Test Cases ***
-Deve poder cadastrar um novo usuário válido
+Deve permitir o cadastro um novo usuário válido
     ${name}                     FakerLibrary.Name
-    ${email}    Set Variable    liviateste@gmail.com
     ${password}                 FakerLibrary.Password
 
-    Remove user from database    ${email}
+    ${user}    Create Dictionary    
+    ...        name=${name}
+    ...        email=liviateste@gmail.com
+    ...        password=${password}
 
-    Start Session
+    Remove user from database    ${user}[email]
 
-    Go To    http://localhost:3000/signup
+    Go to signup Page
+    Submit signup form    ${user}
+    Notice should be     Boas vindas ao Mark85, o seu gerenciador de tarefas.
 
-    # Checkpoint -> pontos de validação para o testador saber se está passando pelo fluxo correto
-    Wait For Elements State    xpath=//h1    visible    5
-    Get Text                   xpath=//h1    equal      Faça seu cadastro
 
-    Fill Text    id=name        ${name}
-    Fill Text    id=email       ${email}
-    Fill Text    id=password    ${password}
+Não deve permitir o cadastro com senha menor do que 6 digitos
+    @{password_list}    Create List    1    12    123    1234    12345
+    FOR    ${password}    IN    @{password_list}
+        Short Password    ${password}
+    END
 
-    Click        id=buttonSignup
-
-    Wait For Elements State    css=.notice p    visible    5
-    Get Text                   css=.notice p    equal      Boas vindas ao Mark85, o seu gerenciador de tarefas.
 
 Não deve permitir o cadastro com email duplicado
     ${name}                     FakerLibrary.Name
-    ${email}    Set Variable    liviateste2@gmail.com
     ${password}                 FakerLibrary.Password
 
-    Remove user from database    ${email}
-    Insert user from database    ${name}    ${email}    ${password}
+    ${user}    Create Dictionary    
+    ...        name=${name}
+    ...        email=liviateste@gmail.com
+    ...        password=${password}
 
-    Start Session
+    Remove user from database    ${user}[email]
+    Insert user from database    ${user}
 
-    Go To    http://localhost:3000/signup
+    Go to signup Page
+    Submit signup form    ${user}
+    Notice should be     Oops! Já existe uma conta com o e-mail informado.
 
-    Wait For Elements State    xpath=//h1    visible    5
-    Get Text                   xpath=//h1    equal      Faça seu cadastro
 
-    Fill Text    id=name        ${name}
-    Fill Text    id=email       ${email}
-    Fill Text    id=password    ${password}
+Deve permitir o cadastro com campos obrigatórios vazios
+    ${user}    Create Dictionary    
+    ...        name=${EMPTY}
+    ...        email=${EMPTY}
+    ...        password=${EMPTY}
 
-    Click        id=buttonSignup
+    Go to signup Page
+    Submit signup form    ${user}
+    Alert should be       Informe seu nome completo
+    Alert should be       Informe seu e-email
+    Alert should be       Informe uma senha com pelo menos 6 digitos
 
-    Wait For Elements State    css=.notice p    visible    5
-    Get Text                   css=.notice p    equal      Oops! Já existe uma conta com o e-mail informado.
+
+Deve permitir o cadastro com e-mail com formatação inválida
+    ${name}                     FakerLibrary.Name
+    ${password}                 FakerLibrary.Password
+
+    ${user}    Create Dictionary    
+    ...        name=${name}
+    ...        email=liviateste.com.br
+    ...        password=${password}
+
+    Go to signup Page
+    Submit signup form    ${user}
+    Alert should be       Digite um e-mail válido
